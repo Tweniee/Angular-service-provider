@@ -1,0 +1,104 @@
+<div class="tab-pane">
+  <form [formGroup]="registerForm" >
+    <div class="text-center mb-3">
+      <p>Sign up with:</p>
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="bi bi-facebook"></i>
+      </button>
+
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="bi bi-google"></i>
+      </button>
+
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="bi bi-twitter"></i>
+      </button>
+
+      <button type="button" class="btn btn-link btn-floating mx-1">
+        <i class="bi bi-github"></i>
+      </button>
+    </div>
+
+    <p class="text-center">or:</p>
+
+    <!-- Name input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="registerName" formControlName="fullName" class="form-control" />
+      <label class="form-label" for="registerName">Full Name</label>
+      <div *ngIf="submitted && f['fullName'].errors" class="invalid-feedback">
+        <div *ngIf="f['fullName'].errors['required']">First Name is required</div>
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" formControlName="email" id="registerEmail" class="form-control" />
+      <label class="form-label" for="registerEmail">Email</label>
+      <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+        <div *ngIf="f['email'].errors?.['required']">Email is required</div>
+      </div>
+    </div>
+
+    <!-- Gender Input -->
+    <div class="form-outline mb-4">
+      <select class="form-select" formControlName="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <label class="form-label">Gender</label>
+      <div *ngIf="submitted && f['gender'].errors" class="invalid-feedback">
+        <div *ngIf="f['gender'].errors?.['required']">Gender is required</div>
+      </div>
+    </div>
+
+    <!-- Role -->
+    <div class="form-outline mb-4">
+      <select class="form-select" formControlName="role">
+        <option selected value="">Open this select Role</option>
+        <option value="1">Admin</option>
+        <option value="2">Provider</option>
+        <option value="3">Consumer</option>
+      </select>
+      <label class="form-label">Role</label>
+      <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">
+        <div *ngIf="f['role'].errors?.['required']">Role is required</div>
+      </div>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="registerPassword" formControlName="password" class="form-control" />
+      <label class="form-label" for="registerPassword">Password</label>
+      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+        <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+      </div>
+    </div>
+
+    <!-- Repeat Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="registerRepeatPassword" formControlName='confirmPassword' class="form-control" />
+      <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+      <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+        <div *ngIf="f['confirmPassword'].errors?.['required']">Confirm Password is required</div>
+        <div *ngIf="f['confirmPassword'].errors?.['mustMatch']">Password doesn't match</div>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input class="form-check-input me-2" type="checkbox" formControlName="acceptTerms" id="registerCheck" checked />
+      <label class="form-check-label" for="registerCheck">
+        I have read and agree to the terms
+      </label>
+    </div>
+      <div *ngIf="submitted && f['acceptTerms'].errors" class="invalid-feedback">
+        <div *ngIf="f['acceptTerms'].errors?.['required']">Terms is required</div>
+      </div>
+    
+
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-3" (click)="onSubmit()">Sign in</button>
+    </form>
+</div>
