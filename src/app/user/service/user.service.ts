@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { user } from '../interface/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,15 +22,17 @@ export class UserService {
     });
   }
   loginForm(json: any) {
-    this.httpClient.post(environment.URL + '/login', json).subscribe((res) => {
-      for (let key in res) {
-        // console.log(res)
-      }
-      this.router.navigateByUrl('/home');
-    });
+    delete json.rememberMe;
+    return this.httpClient.post(environment.URL + '/login', json).toPromise()
   }
   emailVerification(param: any) {
     console.log(param);
-    return this.httpClient.get(environment.URL + '/verificationById/' + param['id']);
+    return this.httpClient.get(
+      environment.URL + '/verificationById/' + param['id']
+    );
+  }
+
+  forgotPassword(email: string) {
+    return this.httpClient.post(environment.URL + '/resetPassword', { email });
   }
 }

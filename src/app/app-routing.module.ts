@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   { path: 'home', component: MainLayoutComponent },
   { path: 'user', component: UserComponent },
-  {path : 'email/:id',component: EmailVerificationComponent}
+  { path: 'email/:id', component: EmailVerificationComponent },
 ];
 
 @NgModule({

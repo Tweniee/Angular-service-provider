@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-user',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
   isLogin: boolean = true;
   isRegister: boolean = false;
+  isForgotPassword: boolean = false;
 
-  constructor() {}
-
+  constructor(public service: UserService) {}
+  forgotEmail!: string;
+  isEmailSent: boolean = false;
   ngOnInit() {}
 
   navClick(tabName: string) {
@@ -21,5 +24,20 @@ export class UserComponent implements OnInit {
       this.isRegister = true;
       this.isLogin = false;
     }
+  }
+  isForgot() {
+    this.isForgotPassword = true;
+  }
+  isRegisterClicked() {
+    this.navClick('register');
+  }
+  reset() {
+    this.service.forgotPassword(this.forgotEmail).subscribe(data=>{
+      this.isEmailSent = true;
+      setTimeout(() => {
+        this.isForgotPassword=false;
+      }, 3000);
+    })
+    
   }
 }

@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   URL: "http://localhost:5000/api/v1"
+  // URL:"https://5864-103-54-15-246.ngrok.io/api/v1"
+
 };
 
 /*
@@ -15,3 +17,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
