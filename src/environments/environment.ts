@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  URL: "http://localhost:5000/api/v1"
-  // URL:"https://5864-103-54-15-246.ngrok.io/api/v1"
+  // URL: "http://localhost:5000/api/v1"
+  URL:"http://nodebackend.vidha.jangid.radixusers3.com:3002/api/v1"
 
 };
 
