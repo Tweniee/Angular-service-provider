@@ -29,20 +29,29 @@
   <div class="modal-dialog" style="width: 300px;padding-top: 150px;">
     <div class="modal-content text-center">
       <div class="modal-header h5 text-white bg-primary justify-content-center">
-        Password Reset
+        <span>Forgot Password</span>
+        <i class="bi bi-x-square" (click)="isForgotPassword=false" style="padding-left: 80px;cursor: pointer;"></i>
       </div>
       <div class="modal-body px-5">
         <p class="py-2">
           Enter your email address and we'll send you an email with instructions to reset your password.
         </p>
-        <div class="form-outline" *ngIf="!isEmailSent" >
-          <input type="email" id="typeEmail" [(ngModel)]="forgotEmail" class="form-control my-3" />
-          <label class="form-label" for="typeEmail">Email input</label>
+        <div class="form-outline" *ngIf="!isEmailSent">
+          <div [class.was-validated]="email.touched && (email.errors?.['required'] || email.errors?.['pattern'])">
+            <input type="email" id="typeEmail" [(ngModel)]="forgotEmail" #email="ngModel" class="form-control my-3"
+              required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+            <label class="form-label" for="typeEmail">Email input</label>
+            <div class="invalid-feedback" *ngIf="email.touched" style="display: unset;">
+              <p *ngIf="email.errors?.['required']">Email is a required field!</p>
+              <p *ngIf="email.errors?.['pattern']">This is not a valid Email!!!</p>
+            </div>
+          </div>
         </div>
-        <span class="blockquote-footer"   *ngIf="isEmailSent">Thanks, Reset Link is been Sent to you Mail!</span>
-        <a class="btn btn-primary w-100" style="margin-top: 20px;" *ngIf="!isEmailSent" (click)="reset()">Reset password</a>
-        <div class="d-flex justify-content-between mt-4" style="display: unset !important;"  *ngIf="!isEmailSent">
-          <a class="" (click)="isForgotPassword=false">Login</a>
+        <span class="blockquote-footer" *ngIf="isEmailSent">Thanks, Reset Link is been Sent to you Mail!</span>
+        <a class="btn btn-primary w-100" style="margin-top: 20px;" *ngIf="!isEmailSent" (click)="reset()">Reset
+          password</a>
+        <div class="d-flex justify-content-between mt-4" style="display: unset !important;" *ngIf="!isEmailSent">
+          <a class="" (click)="isForgotPassword=false" style="color: #0d6efd;">Login</a>
         </div>
       </div>
     </div>

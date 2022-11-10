@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(evt: KeyboardEvent) {
+    this.isForgotPassword = false
+}
   isLogin: boolean = true;
   isRegister: boolean = false;
   isForgotPassword: boolean = false;
@@ -39,5 +42,8 @@ export class UserComponent implements OnInit {
       }, 3000);
     })
     
+  }
+  hey(){
+    console.log("hey")
   }
 }
